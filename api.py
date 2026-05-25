@@ -7,6 +7,21 @@ api_url = "https://api.openweathermap.org/data/2.5/weather"
 
 # выполнение HTTP‑запроса
 def fetch_weather(lat: float, lon: float, api_key: str) -> dict | None:
+    """
+    Выполняет HTTP‑запрос к API OpenWeatherMap
+    и возвращает сырые данные о погоде.
+
+    :param lat: Широта в градусах.
+    :type lat: float
+    :param lon: Долгота в градусах.
+    :type lon: float
+    :param api_key: Ключ доступа к API OpenWeatherMap.
+    :type api_key: str
+    :returns: JSON‑ответ в виде словаря или None, если ошибка.
+    :rtype: dict | None
+    :raises Exception: При сетевых ошибках или таймауте.
+    """
+
     params = {
         "lat": lat,
         "lon": lon,
