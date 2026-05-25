@@ -44,6 +44,17 @@ def fetch_weather(lat: float, lon: float, api_key: str) -> dict | None:
 
 # извлечение данных из JSON
 def parse_weather(data: dict) -> dict | None:
+    """
+    Извлекает и валидирует данные о погоде из JSON‑ответа API.
+
+    :param data: Сырые данные, полученные от OpenWeatherMap.
+    :type data: dict
+    :returns: Словарь с обработанной информацией о погоде или None при ошибке.
+    :rtype: dict | None
+    :raises KeyError: Если в данных отсутствуют необходимые поля.
+    :raises TypeError: Если значения имеют неверные типы.
+    """
+
     try:
         city = data["name"]
         temp = data["main"]["temp"]
