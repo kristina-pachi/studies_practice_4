@@ -2,13 +2,13 @@
 
 
 import re
-import requests
+import requests  # type: ignore
 import csv
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
-
 base_url = "https://lenta.ru"
+
 
 # проверка доступности сайта
 def check_site(url: str) -> bool:
@@ -18,6 +18,7 @@ def check_site(url: str) -> bool:
     except Exception:
         return False
 
+
 # загрузка HTML-кода страницы
 def load_html(url: str) -> str | None:
     try:
@@ -26,12 +27,14 @@ def load_html(url: str) -> str | None:
     except Exception:
         return None
 
+
 # поиск карточек новостей
 def parse_cards(html: str):
     soup = BeautifulSoup(html, "lxml")
     # ищем элементы, у которых класс начинается с card- и содержит только буквы
     cards = soup.find_all(class_=re.compile(r"^card-[a-z]+$"))
     return cards
+
 
 # парсинг одной карточки
 def parse_one_card(card):
@@ -47,10 +50,8 @@ def parse_one_card(card):
 
     full_link = urljoin(base_url, link)
 
-    return {
-        "title": title,
-        "link": full_link
-    }
+    return {"title": title, "link": full_link}
+
 
 # парсинг всех карточек
 def parse_all_cards(cards):
@@ -65,6 +66,7 @@ def parse_all_cards(cards):
             n += 1
 
     return news
+
 
 # cохранение в txt
 def save_news_txt(news, filename="all_news_from_lenta_ru.txt"):
@@ -96,6 +98,7 @@ def run_parser():
     news = parse_all_cards(cards)
 
     return news
+
 
 # ввывод в консоль
 print(*[f"{n['№']}. {n['title']}" for n in run_parser()], sep="\n")
