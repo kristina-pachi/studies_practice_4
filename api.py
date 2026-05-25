@@ -95,6 +95,21 @@ def parse_weather(data: dict) -> dict | None:
 
 
 def get_weather(lat: float, lon: float, api_key: str) -> dict | None:
+    """
+    Получает и обрабатывает данные о погоде:
+    выполняет запрос и парсит результат.
+
+    :param lat: Широта в градусах.
+    :type lat: float
+    :param lon: Долгота в градусах.
+    :type lon: float
+    :param api_key: Ключ доступа к API OpenWeatherMap.
+    :type api_key: str
+
+    :returns: Итоговый словарь с данными о погоде или None при ошибке.
+    :rtype: dict | None
+    """
+
     raw = fetch_weather(lat, lon, api_key)
     if raw is None:
         return None
