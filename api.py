@@ -1,6 +1,6 @@
 # 2. Получение данных о погоде через API.
 
-import requests
+import requests  # type: ignore
 
 api_url = "https://api.openweathermap.org/data/2.5/weather"
 
@@ -25,6 +25,7 @@ def fetch_weather(lat: float, lon: float, api_key: str) -> dict | None:
 
     except Exception:
         return None
+
 
 # извлечение данных из JSON
 def parse_weather(data: dict) -> dict | None:
