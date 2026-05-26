@@ -20,6 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Алфавитный указатель" href="genindex.html" />
     <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="studies_practice_4" href="modules.html" />
     <link rel="prev" title="Api OpenWeatherMap documentation" href="index.html" /> 
 </head>
 
@@ -55,6 +56,22 @@
 <li class="toctree-l2"><a class="reference internal" href="#parser.save_news_txt"><code class="docutils literal notranslate"><span class="pre">save_news_txt()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">studies_practice_4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.html">api module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">parser module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parser.check_site"><code class="docutils literal notranslate"><span class="pre">check_site()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parser.load_html"><code class="docutils literal notranslate"><span class="pre">load_html()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parser.parse_all_cards"><code class="docutils literal notranslate"><span class="pre">parse_all_cards()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parser.parse_cards"><code class="docutils literal notranslate"><span class="pre">parse_cards()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parser.parse_one_card"><code class="docutils literal notranslate"><span class="pre">parse_one_card()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parser.run_parser"><code class="docutils literal notranslate"><span class="pre">run_parser()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parser.save_news_csv"><code class="docutils literal notranslate"><span class="pre">save_news_csv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parser.save_news_txt"><code class="docutils literal notranslate"><span class="pre">save_news_txt()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">api module</a></li>
 </ul>
 
         </div>
@@ -86,42 +103,152 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="parser.check_site">
 <span class="sig-prename descclassname"><span class="pre">parser.</span></span><span class="sig-name descname"><span class="pre">check_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/parser.html#check_site"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#parser.check_site" title="Ссылка на это определение"></a></dt>
-<dd></dd></dl>
+<dd><p>Проверяет доступность веб‑сайта с помощью HTTP‑запроса HEAD.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – URL сайта, доступность которого необходимо проверить.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>True, если сайт отвечает кодом &lt; 500, иначе False.</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – При сетевых ошибках.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="parser.load_html">
 <span class="sig-prename descclassname"><span class="pre">parser.</span></span><span class="sig-name descname"><span class="pre">load_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/parser.html#load_html"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#parser.load_html" title="Ссылка на это определение"></a></dt>
-<dd></dd></dl>
+<dd><p>Загружает HTML‑код страницы по указанному URL.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>str</em>) – Адрес страницы, с которой требуется получить HTML.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>HTML‑код страницы в виде строки или None при ошибке.</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str | None</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – При ошибках сети или таймауте .</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="parser.parse_all_cards">
 <span class="sig-prename descclassname"><span class="pre">parser.</span></span><span class="sig-name descname"><span class="pre">parse_all_cards</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cards</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/parser.html#parse_all_cards"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#parser.parse_all_cards" title="Ссылка на это определение"></a></dt>
-<dd></dd></dl>
+<dd><p>Обрабатывает список карточек новостей и формирует итоговый список новостей.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cards</strong> (<em>list</em>) – Список HTML‑элементов карточек.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Список словарей с данными о новостях, включая порядковый номер.</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="parser.parse_cards">
 <span class="sig-prename descclassname"><span class="pre">parser.</span></span><span class="sig-name descname"><span class="pre">parse_cards</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/parser.html#parse_cards"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#parser.parse_cards" title="Ссылка на это определение"></a></dt>
-<dd></dd></dl>
+<dd><p>Ищет карточки новостей в HTML‑коде страницы.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>html</strong> (<em>str</em>) – HTML‑код страницы, полученный ранее.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Список найденных HTML‑элементов, карточек новостей.</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="parser.parse_one_card">
 <span class="sig-prename descclassname"><span class="pre">parser.</span></span><span class="sig-name descname"><span class="pre">parse_one_card</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">card</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/parser.html#parse_one_card"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#parser.parse_one_card" title="Ссылка на это определение"></a></dt>
-<dd></dd></dl>
+<dd><p>Извлекает данные из одной карточки новости.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>card</strong> (<em>bs4.element.Tag</em>) – HTML‑элемент карточки, найденный на странице.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Словарь с title и link на новость, None если данные некорректны.</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict | None</p>
+</dd>
+<dt class="field-even">Исключение<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AttributeError</strong> – Если структура карточки не соответствует ожидаемой.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="parser.run_parser">
 <span class="sig-prename descclassname"><span class="pre">parser.</span></span><span class="sig-name descname"><span class="pre">run_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/parser.html#run_parser"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#parser.run_parser" title="Ссылка на это определение"></a></dt>
-<dd></dd></dl>
+<dd><p>Запускает полный процесс парсинга новостей:
+проверяет сайт, загружает HTML,
+извлекает карточки и формирует итоговый список новостей.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Список новостей или пустой список при ошибке.</p>
+</dd>
+<dt class="field-even">Тип результата<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="parser.save_news_csv">
 <span class="sig-prename descclassname"><span class="pre">parser.</span></span><span class="sig-name descname"><span class="pre">save_news_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">news</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all_news_from_lenta_ru.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/parser.html#save_news_csv"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#parser.save_news_csv" title="Ссылка на это определение"></a></dt>
-<dd></dd></dl>
+<dd><p>Сохраняет список новостей в CSV‑файл.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>news</strong> (<em>list</em>) – Список словарей с новостями.</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – Имя CSV‑файла для сохранения.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="parser.save_news_txt">
 <span class="sig-prename descclassname"><span class="pre">parser.</span></span><span class="sig-name descname"><span class="pre">save_news_txt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">news</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all_news_from_lenta_ru.txt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/parser.html#save_news_txt"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#parser.save_news_txt" title="Ссылка на это определение"></a></dt>
-<dd></dd></dl>
+<dd><p>Сохраняет список новостей в текстовый файл.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>news</strong> (<em>list</em>) – Список словарей с новостями.</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – Имя файла.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>None.</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 
@@ -130,6 +257,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Нижняя область">
         <a href="index.html" class="btn btn-neutral float-left" title="Api OpenWeatherMap documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="studies_practice_4" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
